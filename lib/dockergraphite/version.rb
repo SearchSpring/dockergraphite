@@ -1,3 +1,3 @@
-module Dockergraphite
+module DockerGraphite
   VERSION = "0.1.0"
 end

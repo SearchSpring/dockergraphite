@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'ostruct'
+require 'dockergraphite'
+require 'pp'
+
+options = OpenStruct.new()
+options[:hostname] = "localhost"
+options[:port] = 2003
+options[:period] = 180
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: dockergraphite [OPTIONS]"
+  opts.on("-H HOSTNAME", "--host=HOSTNAME", "Hostname of graphite server") do |host|
+    options[:hostname] = host
+  end
+  opts.on("-p 2003", "--port=2003", "Port of graphite server") do |port|
+    options[:port] = port.to_i
+  end
+  opts.on("-t 60", "--period=60", "Number of seconds between polling stats") do |period|
+    options[:period] = period.to_i
+  end
+  opts.on("-m metric1,metric2,metric3", "--metrics=m1,m2,m3", Array, "List of metrics you want to poll") do |metrics|
+    options[:metrics] = metrics
+  end
+  opts.on("-e pattern1,pattern2,pattern3", "--exclude=p1,p2,p3", Array, "List of patterns of container names to exclude") do |exclude|
+    options[:exclude] = exclude
+  end
+  opts.on("--prefix=PREFIX", "Prefix to prepend to graphite stats") do |prefix|
+    options[:prefix] = prefix
+  end
+end.parse!
+
+statsloop = DockerGraphite::Loop.new(
+  :hostname     => options[:hostname],
+  :port         => options[:port],
+  :period       => options[:period],
+  :metrics      => options[:metrics],
+  :exclude      => options[:exclude],
+  :prefix       => options[:prefix]
+)
+statsloop.start

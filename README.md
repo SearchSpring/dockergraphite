@@ -32,6 +32,20 @@ Usage: dockergraphite [OPTIONS]
 
 A list of example stats that can be polled is in example_stats.txt
 
+## Docker
+
+setup Graphite
+```bash
+docker run -p 2003:2003 -p 8080:80 -d --name graphite sitespeedio/graphite
+```
+run DockerGraphite
+```bash
+docker run -v /var/run/docker.sock:/var/run/docker.sock:ro --link graphite searchspring/dockergraphite -t 10 --prefix docker -H graphite -m memory_stats.usage,cpu_stats.cpu_usage.total_usage,network.rx_bytes,network.tx_bytes
+```
+
+Checkout http://localhost:8080 , login with guest/guest.  Boom! stats.
+
+
 
 ## Development
 

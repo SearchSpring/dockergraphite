@@ -1,5 +1,11 @@
-require "dockergraphite/version"
+#
+# Author::    Greg Hellings (mailto:greg@searchspring.com)
+# Copyright:: Copyright (c) 2016 B7Interactive, LLC
+# License::   Distributes under the same terms as Ruby
 
-module Dockergraphite
-  # Your code goes here...
-end
+require "dockergraphite/version"
+require "dockergraphite/utilities"
+require "dockergraphite/graphitepush"
+require "dockergraphite/loop"
+require "dockergraphite/dockerstats"
+

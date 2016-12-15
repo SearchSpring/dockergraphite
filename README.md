@@ -1,8 +1,6 @@
 # Dockergraphite
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dockergraphite`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem poll Docker for stats and push them to a graphite server.
 
 ## Installation
 
@@ -22,7 +20,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```bash
+Usage: dockergraphite [OPTIONS]
+    -H, --host=HOSTNAME              Hostname of graphite server
+    -p, --port=2003                  Port of graphite server
+    -t, --period=60                  Number of seconds between polling stats
+    -m, --metrics=m1,m2,m3           List of metrics you want to poll
+    -e, --exclude=p1,p2,p3           List of patterns of container names to exclude
+        --prefix=PREFIX              Prefix to prepend to graphite stats
+```
+
+A list of example stats that can be polled is in example_stats.txt
+
 
 ## Development
 

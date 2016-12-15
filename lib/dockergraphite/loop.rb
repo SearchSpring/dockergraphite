@@ -13,6 +13,7 @@ module DockerGraphite
     end  
 
     def start
+      $stdout.sync = true
       puts "Starting main loop\n"
       stats = DockerGraphite::DockerStats.new(
         :metrics => self.metrics,

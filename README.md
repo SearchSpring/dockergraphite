@@ -30,6 +30,9 @@ Usage: dockergraphite [OPTIONS]
         --prefix=PREFIX              Prefix to prepend to graphite stats
 ```
 
+A list of example stats that can be polled is in example_stats.txt
+
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
